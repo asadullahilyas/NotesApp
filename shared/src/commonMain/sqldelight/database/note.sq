@@ -1,0 +1,24 @@
+CREATE TABLE NoteEntity  (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    title TEXT NOT NULL,
+    content TEXT NOT NULL,
+    colorHex INTEGER NOT NULL,
+    created INTEGER NOT NULL
+);
+
+getAllNotes:
+SELECT * FROM NoteEntity;
+
+getNoteById:
+SELECT * FROM NoteEntity WHERE id = ?;
+
+addOrReplaceNote:
+INSERT OR REPLACE INTO NoteEntity(
+    id, title, content, colorHex, created
+) VALUES (?, ?, ?, ?, ?);
+
+deleteNoteById:
+DELETE FROM NoteEntity WHERE id = ?;
+
+searchByQuery:
+SELECT * FROM NoteEntity WHERE title LIKE '%' || :query || '%' OR content LIKE '%' || :query || '%';
